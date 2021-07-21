@@ -36,6 +36,7 @@ def animated(i, xs, ys):
     light_values = data['lights']
     light_read = light_values[0]
     brightness = light_read['brightness']
+    status = light_read['ison']
     
     # Create lists with X and Ys
     xs.append(dt.datetime.now().strftime('%M:%S'))
@@ -44,8 +45,8 @@ def animated(i, xs, ys):
     
     # Draw X and Ys lists
     ax.plot(xs, ys, color='red')
-    ax.plot(xs, ys2, color='blue', label = 'tempr')
-
+    ax.scatter(xs, ys2, color='blue')
+    
     # Format plot
     plt.xticks(rotation=45, ha='right')
     plt.subplots_adjust(bottom=0.30)
@@ -56,3 +57,4 @@ def animated(i, xs, ys):
 # Drawing
 routine = animation.FuncAnimation(fig, animated, fargs=(xs, ys), interval=1000)
 plt.show()
+
